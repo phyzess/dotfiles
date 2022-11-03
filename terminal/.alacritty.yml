@@ -1,0 +1,109 @@
+# ! Replace {userName} with local user
+
+# 自动刷新
+live_config_reload: true
+# Tab 缩进
+tabspaces: 4
+# 背景透明度
+window.opacity: 0.8
+
+# shell:
+#   program: /Users/{userName}/.cargo/bin/nu
+#   # program: /bin/zsh
+#   args:
+#     # login
+#     - -l
+
+shell:
+  program: /Users/{userName}/.cargo/bin/zellij
+  args:
+    - --layout
+    - /Users/{userName}/.config/zellij/layouts/layout.yaml
+
+window:
+  # 窗口大小
+  dimensions:
+    columns: 240
+    lines: 60
+
+  # 边缘空白
+  padding:
+    x: 10
+    y: 15
+  dynamic_padding: false
+  # startup_mode: Maximized
+  # 窗口修饰
+  # - full: 有边界+标题栏
+  # - none: 无边界+标题栏
+  decorations: full
+
+scrolling:
+  # 历史保留行数
+  history: 2000
+
+  # 每次滚动行数
+  multiplier: 20
+
+  # 每次滚动行数（分屏时）
+  faux_multiplier: 100
+
+  # 自动滚动至最新行
+  auto_scroll: true
+
+# Colors (Ayu Dark)
+colors:
+  # Default colors
+  primary:
+    background: '#0A0E14'
+    foreground: '#B3B1AD'
+
+  # Normal colors
+  normal:
+    black: '#01060E'
+    red: '#EA6C73'
+    green: '#91B362'
+    yellow: '#F9AF4F'
+    blue: '#53BDFA'
+    magenta: '#FAE994'
+    cyan: '#90E1C6'
+    white: '#C7C7C7'
+
+  # Bright colors
+  bright:
+    black: '#686868'
+    red: '#F07178'
+    green: '#C2D94C'
+    yellow: '#FFB454'
+    blue: '#59C2FF'
+    magenta: '#FFEE99'
+    cyan: '#95E6CB'
+    white: '#FFFFFF'
+
+# 设置字体
+font:
+# 字体
+  normal:
+    family: 'FiraCode Nerd Font'
+    style: Regular
+  bold:
+    family: 'FiraCode Nerd Font'
+    style: Bold
+  italic:
+    family: 'FiraCode Nerd Font'
+    style: Italic
+  bold_italic:
+    family: 'FiraCode Nerd Font'
+    style: Bold Italic
+
+  # 细描边
+  use_thin_strokes: true
+
+  # 字大小
+  size: 12.0 
+
+  offset:
+    x: 0
+    y: 0
+  glyph_offset:
+    x: 0
+    y: 0
