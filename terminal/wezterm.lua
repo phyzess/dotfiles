@@ -14,10 +14,10 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
     default_prog = {'pwsh.exe', '-NoLogo'}
 elseif wezterm.target_triple == 'x86_64-apple-darwin' then
     table.insert(launch_menu, {
-        label = 'zsh',
-        args = {'/usr/local/bin/zsh', '-l'}
+        label = 'nushell',
+        args = {'/usr/local/bin/nu', '-l'}
     })
-    default_prog = {'/usr/local/bin/zsh', '-l'}
+    default_prog = {'/usr/local/bin/nu', '-l'}
 elseif wezterm.target_triple == 'aarch64-apple-darwin' then
     table.insert(launch_menu, {
         label = 'zsh',
@@ -63,7 +63,7 @@ end)
 
 -- Initial startup
 wezterm.on('gui-startup', function(cmd)
-    local tab, pane, window = wezterm.mux.spawn_window(cmd or {})
+    local tab, pane, window = wezterm.mux.spawn_window(cmd or {width = 240, height = 60})
     local right_pane = pane:split{
         direction = 'Right'
     }

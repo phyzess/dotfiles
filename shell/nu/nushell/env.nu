@@ -1,5 +1,5 @@
-# ! Replace {userName} with local user
 # Nushell Environment Config File
+# ! Replace {userName} with local user
 
 def create_left_prompt [] {
     let path_segment = if (is-admin) {
@@ -14,7 +14,7 @@ def create_left_prompt [] {
 def create_right_prompt [] {
     let time_segment = ([
         (date now | date format '%m/%d/%Y %r')
-    ] | str collect)
+    ] | str join)
 
     $time_segment
 }
@@ -36,12 +36,12 @@ let-env PROMPT_MULTILINE_INDICATOR = { "::: " }
 # Note: The conversions happen *after* config.nu is loaded
 let-env ENV_CONVERSIONS = {
   "PATH": {
-    from_string: { |s| $s | split row (char esep) }
-    to_string: { |v| $v | path expand | str collect (char esep) }
+    from_string: { |s| $s | split row (char esep) | path expand -n }
+    to_string: { |v| $v | path expand -n | str join (char esep) }
   }
   "Path": {
-    from_string: { |s| $s | split row (char esep) }
-    to_string: { |v| $v | path expand | str collect (char esep) }
+    from_string: { |s| $s | split row (char esep) | path expand -n }
+    to_string: { |v| $v | path expand -n | str join (char esep) }
   }
 }
 
@@ -61,14 +61,17 @@ let-env NU_PLUGIN_DIRS = [
 
 # To add entries to PATH (on Windows you might use Path), you can use the following pattern:
 # let-env PATH = ($env.PATH | split row (char esep) | prepend '/some/path')
+
 # pnpm
+# fix pnpm in nu
 let-env PNPM_HOME = '/Users/{userName}/Library/pnpm'
 let-env PATH = ($env.PATH | split row (char esep) | prepend '/Users/{userName}/Library/pnpm')
 # pnpm end
 
-source ~/.cache/starship/init.nu
 source ~/.zoxide.nu
 
 # source aliases
 source ~/.nu-scripts/.nualias.nu
 source ~/.nu-scripts/.nualias-git.nu
+
+source ~/.cache/starship/init.nu
